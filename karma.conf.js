@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/angular-dog-memory-game'),
+      dir: require('path').join(__dirname, './coverage/dog-memory-game'),
       subdir: '.',
       reporters: [
         { type: 'html' },

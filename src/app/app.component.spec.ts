@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'angular-dog-memory-game'`, () => {
+  it(`should have as title 'dog-memory-game'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-dog-memory-game');
+    expect(app.title).toEqual('dog-memory-game');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angular-dog-memory-game app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('dog-memory-game app is running!');
   });
 });
