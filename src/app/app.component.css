@@ -3,6 +3,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.container {
+  overflow: hidden;
+}
+
 .main-title {
   margin-bottom: 60px;
 }

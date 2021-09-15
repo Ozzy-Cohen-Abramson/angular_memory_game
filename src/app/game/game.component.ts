@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Player } from '../shared/player.model';
 
-interface Food {
+interface Board {
   value: number;
   viewValue: string;
 }
@@ -10,7 +11,12 @@ interface Food {
   styleUrls: ['./game.component.css'],
 })
 export class GameComponent implements OnInit {
-  boards: Food[] = [
+  userName = '';
+  boardSize = '';
+  player: any = '';
+
+  boardCreated = false;
+  boards: Board[] = [
     { value: 2, viewValue: '2X2' },
     { value: 4, viewValue: '4X4' },
     { value: 6, viewValue: '6X6' },
@@ -19,4 +25,11 @@ export class GameComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  createBoard(name: string, board: string) {
+    // console.log(name, board);
+    this.boardCreated = true;
+    this.player = new Player(name, board);
+    console.log(this.player);
+  }
 }

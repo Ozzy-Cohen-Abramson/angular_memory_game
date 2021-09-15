@@ -56,15 +56,18 @@ mat-form-field {
   transform: skewX(15deg);
   z-index: -1;
 }
-:hover {
+:hover:enabled {
   cursor: pointer;
 }
-:hover:after {
+:hover:after:enabled {
   width: 100%;
   left: 0;
 }
-:hover.button {
+:hover.button:enabled {
   color: #65cbfa;
+}
+:disabled {
+  cursor: no-drop;
 }
 
 @media only screen and (max-width: 600px) {

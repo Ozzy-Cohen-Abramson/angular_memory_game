@@ -13,6 +13,7 @@ import { InformationComponent } from './information/information.component';
 import { GameComponent } from './game/game.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BoardComponent } from './game/board/board.component';
+import { TimerComponent } from './game/timer/timer.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { BoardComponent } from './game/board/board.component';
     InformationComponent,
     GameComponent,
     BoardComponent,
+    TimerComponent,
   ],
   imports: [
     BrowserModule,
