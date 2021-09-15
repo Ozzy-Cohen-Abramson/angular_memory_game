@@ -14,6 +14,7 @@ import { GameComponent } from './game/game.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BoardComponent } from './game/board/board.component';
 import { TimerComponent } from './game/timer/timer.component';
+import { GameCardComponent } from './game/board/game-card/game-card.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { TimerComponent } from './game/timer/timer.component';
     GameComponent,
     BoardComponent,
     TimerComponent,
+    GameCardComponent,
   ],
   imports: [
     BrowserModule,

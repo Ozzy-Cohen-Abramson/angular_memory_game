@@ -15,7 +15,7 @@ export class GameComponent implements OnInit {
   boardSize = '';
   player: any = '';
 
-  boardCreated = false;
+  boardCreated = true;
   boards: Board[] = [
     { value: 2, viewValue: '2X2' },
     { value: 4, viewValue: '4X4' },
