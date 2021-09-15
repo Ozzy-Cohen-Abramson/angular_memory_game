@@ -8,6 +8,7 @@ import {
 import { Component, OnInit } from '@angular/core';
 
 export interface CardData {
+  breed: string;
   imageId: string;
   state: 'default' | 'flipped' | 'matched';
 }
@@ -37,6 +38,7 @@ export interface CardData {
 })
 export class GameCardComponent implements OnInit {
   data: CardData = {
+    breed: 'bouvier',
     imageId: 'n02106382_2715',
     state: 'default',
   };
@@ -47,9 +49,11 @@ export class GameCardComponent implements OnInit {
   cardClicked() {
     if (this.data.state === 'default') {
       this.data.state = 'flipped';
-    } else {
-      this.data.state = 'default';
     }
+  }
+
+  showDetails() {
+    console.log(this.data.breed);
   }
   // fetch random dog images
   // https://dog.ceo/api/breeds/image/random/4
