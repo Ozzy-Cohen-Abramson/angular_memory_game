@@ -12,6 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { InformationComponent } from './information/information.component';
 import { GameComponent } from './game/game.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BoardComponent } from './game/board/board.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     InformationComponent,
     GameComponent,
+    BoardComponent,
   ],
   imports: [
     BrowserModule,
