@@ -9,24 +9,24 @@ import { CardData } from './card-data.model';
 })
 export class BoardComponent implements OnInit {
   cardImages = [
-    'bouvier/n02106382_2715',
-    'akita/Japaneseakita',
-    'boxer/n02108089_3162',
-    'pyrenees/n02111500_4104',
-    'beagle/n02088364_12154',
-    'pug/n02110958_6627',
-    'dingo/n02115641_6250',
-    'chow/n02112137_3523',
-    'schipperke/n02104365_8919',
-    'coonhound/n02089078_243',
-    'pitbull/20190801_154956',
-    'entlebucher/n02108000_2065',
-    'lhasa/n02098413_4100',
-    'kelpie/n02105412_2301',
-    'labrador/n02099712_7968',
-    'labrador/n02099712_2223',
-    'pyrenees/n02111500_2010',
-    'pembroke/n02113023_5985',
+    { breed: 'bouvier', image: 'bouvier/n02106382_2715' },
+    { breed: 'akita', image: 'akita/Japaneseakita' },
+    { breed: 'boxer', image: 'boxer/n02108089_3162' },
+    { breed: 'pyrenees', image: 'pyrenees/n02111500_4104' },
+    { breed: 'beagle', image: 'beagle/n02088364_12154' },
+    { breed: 'pug', image: 'pug/n02110958_6627' },
+    { breed: 'dingo', image: 'dingo/n02115641_6250' },
+    { breed: 'chow', image: 'chow/n02112137_3523' },
+    { breed: 'schipperke', image: 'schipperke/n02104365_8919' },
+    { breed: 'coonhound', image: 'coonhound/n02089078_243' },
+    { breed: 'pitbull', image: 'pitbull/20190801_154956' },
+    { breed: 'entlebucher', image: 'entlebucher/n02108000_2065' },
+    { breed: 'lhasa', image: 'lhasa/n02098413_4100' },
+    { breed: 'kelpie', image: 'kelpie/n02105412_2301' },
+    { breed: 'labrador', image: 'labrador/n02099712_7968' },
+    { breed: 'labrador', image: 'labrador/n02099712_2223' },
+    { breed: 'pyrenees', image: 'pyrenees/n02111500_2010' },
+    { breed: 'pembroke', image: 'pembroke/n02113023_5985' },
   ];
 
   cards: CardData[] = [];
@@ -50,9 +50,10 @@ export class BoardComponent implements OnInit {
 
   setupCards(): void {
     this.cards = [];
-    this.cardImages.forEach((image) => {
+    this.cardImages.forEach((dog) => {
       const cardData: CardData = {
-        imageId: image,
+        breed: dog.breed,
+        imageId: dog.image,
         state: 'default',
       };
 

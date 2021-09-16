@@ -7,7 +7,7 @@
   height: 70vh; */
 
   display: grid;
-  grid-template-columns: repeat(5, 150px);
+  grid-template-columns: repeat(6, 190px);
   gap: 16px;
 
   justify-content: center;

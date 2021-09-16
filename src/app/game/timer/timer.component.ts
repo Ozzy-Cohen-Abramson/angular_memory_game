@@ -8,18 +8,16 @@ import { interval } from 'rxjs';
 })
 export class TimerComponent implements OnInit {
   seconds: number = 0;
-  // minutes: number = 0;
+  minutes: number = 0;
   constructor() {}
 
   ngOnInit(): void {
-    const obs$ = interval(1000);
-    obs$.subscribe((d) => {
-      this.seconds = d;
-      // if (this.seconds % 60 === 0) {
-      //   d = 0;
-      //   this.seconds = 0;
-      //   this.minutes = this.minutes + 1;
-      // }
-    });
+    setInterval(() => {
+      this.seconds += 1;
+      if (this.seconds % 60 === 0) {
+        this.seconds = 0;
+        this.minutes += 1;
+      }
+    }, 1000);
   }
 }

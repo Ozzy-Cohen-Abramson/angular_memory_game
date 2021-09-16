@@ -4,7 +4,7 @@
   justify-content: center;
 
   position: absolute;
-  top: 150px;
+  top: 30px;
   left: 100px;
 
   background-color: rgba(255, 255, 255, 0.822);
@@ -14,5 +14,4 @@
 
 .timer-seconds {
   text-align: center;
-  margin-bottom: -15px;
 }

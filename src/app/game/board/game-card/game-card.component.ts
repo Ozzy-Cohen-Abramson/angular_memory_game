@@ -42,12 +42,6 @@ import { CardData } from '../card-data.model';
   ],
 })
 export class GameCardComponent implements OnInit {
-  // data: CardData = {
-  //   breed: 'bouvier',
-  //   imageId: 'bouvier/n02106382_2715',
-  //   state: 'default',
-  // };
-
   @Input() data!: CardData;
 
   @Output() cardClicked = new EventEmitter();
@@ -62,7 +56,7 @@ export class GameCardComponent implements OnInit {
   //   }
   // }
 
-  // showDetails() {
-  //   console.log(this.data.breed);
-  // }
+  showDetails() {
+    console.log(this.data.breed);
+  }
 }

@@ -3,8 +3,10 @@
     <img src="assets/card-back.jpg" />
   </div>
   <div class="face front">
-    <!-- <h3>{{ data.breed }}</h3> -->
+    <h3>{{ data.breed }}</h3>
     <img [src]="'https://images.dog.ceo/breeds/' + data.imageId + '.jpg'" />
-    <a class="info">Information</a>
+    <a class="info" (click)="showDetails()" href="/info/{{ data.breed }}"
+      >Information</a
+    >
   </div>
 </div>
