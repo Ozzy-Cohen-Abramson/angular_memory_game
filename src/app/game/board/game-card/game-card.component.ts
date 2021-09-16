@@ -1,17 +1,13 @@
 import {
-  animate,
+  trigger,
   state,
   style,
   transition,
-  trigger,
+  animate,
 } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
 
-export interface CardData {
-  breed: string;
-  imageId: string;
-  state: 'default' | 'flipped' | 'matched';
-}
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { CardData } from '../card-data.model';
 
 @Component({
   selector: 'app-game-card',
@@ -28,33 +24,45 @@ export interface CardData {
       state(
         'flipped',
         style({
-          transform: 'rotateY(180deg)',
+          transform: 'perspective(600px) rotateY(180deg)',
+        })
+      ),
+      state(
+        'matched',
+        style({
+          visibility: 'false',
+          transform: 'scale(0.05)',
+          opacity: 0,
         })
       ),
       transition('default => flipped', [animate('400ms')]),
-      transition('flipped => default', [animate('200ms')]),
+      transition('flipped => default', [animate('400ms')]),
+      transition('* => matched', [animate('400ms')]),
     ]),
   ],
 })
 export class GameCardComponent implements OnInit {
-  data: CardData = {
-    breed: 'bouvier',
-    imageId: 'n02106382_2715',
-    state: 'default',
-  };
+  // data: CardData = {
+  //   breed: 'bouvier',
+  //   imageId: 'bouvier/n02106382_2715',
+  //   state: 'default',
+  // };
+
+  @Input() data!: CardData;
+
+  @Output() cardClicked = new EventEmitter();
+
   constructor() {}
 
   ngOnInit(): void {}
 
-  cardClicked() {
-    if (this.data.state === 'default') {
-      this.data.state = 'flipped';
-    }
-  }
+  // cardClicked() {
+  //   if (this.data.state === 'default') {
+  //     this.data.state = 'flipped';
+  //   }
+  // }
 
-  showDetails() {
-    console.log(this.data.breed);
-  }
-  // fetch random dog images
-  // https://dog.ceo/api/breeds/image/random/4
+  // showDetails() {
+  //   console.log(this.data.breed);
+  // }
 }

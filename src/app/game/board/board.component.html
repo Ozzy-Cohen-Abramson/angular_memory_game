@@ -1,4 +1,8 @@
 <app-timer></app-timer>
 <div class="board-container">
-  <app-game-card></app-game-card>
+  <app-game-card
+    *ngFor="let c of cards; let idx = index"
+    [data]="c"
+    (cardClicked)="cardClicked(idx)"
+  ></app-game-card>
 </div>

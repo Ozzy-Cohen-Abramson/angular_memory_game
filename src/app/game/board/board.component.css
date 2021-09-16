@@ -1,8 +1,20 @@
 .board-container {
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: center;
 
   width: 100vw;
-  height: 70vh;
+  height: 70vh; */
+
+  display: grid;
+  grid-template-columns: repeat(5, 150px);
+  gap: 16px;
+
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .board-container {
+    grid-template-columns: repeat(2, 150px);
+  }
 }

@@ -1,14 +1,10 @@
-<div class="card" (click)="cardClicked()" [@cardFlip]="data.state">
+<div class="card" (click)="cardClicked.emit()" [@cardFlip]="data.state">
   <div class="face back">
     <img src="assets/card-back.jpg" />
   </div>
   <div class="face front">
-    <h3>{{ data.breed }}</h3>
-    <img
-      [src]="'https://images.dog.ceo/breeds/bouvier/' + data.imageId + '.jpg'"
-    />
-    <a class="info" (click)="showDetails()" href="/info/{{ data.breed }}"
-      >Information</a
-    >
+    <!-- <h3>{{ data.breed }}</h3> -->
+    <img [src]="'https://images.dog.ceo/breeds/' + data.imageId + '.jpg'" />
+    <a class="info">Information</a>
   </div>
 </div>
