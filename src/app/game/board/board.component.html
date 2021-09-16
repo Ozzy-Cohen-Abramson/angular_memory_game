@@ -1,5 +1,8 @@
 <app-timer></app-timer>
 <div class="board-container">
+  <p class="moove-count">
+    Mooves: <span class="mooves">{{ mooveCount }}</span>
+  </p>
   <app-game-card
     *ngFor="let c of cards; let idx = index"
     [data]="c"

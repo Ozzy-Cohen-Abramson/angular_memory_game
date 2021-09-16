@@ -12,7 +12,7 @@ interface Board {
 })
 export class GameComponent implements OnInit {
   userName = '';
-  boardSize = '';
+  boardSize: any = 4;
   player: any = '';
 
   boardCreated = true;
@@ -29,7 +29,8 @@ export class GameComponent implements OnInit {
   createBoard(name: string, board: string) {
     // console.log(name, board);
     this.boardCreated = true;
-    this.player = new Player(name, board);
+    this.boardSize = parseInt(board);
+    this.player = new Player(name, (this.boardSize * this.boardSize) / 2);
     console.log(this.player);
   }
 }

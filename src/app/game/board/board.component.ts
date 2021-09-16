@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CardData } from './card-data.model';
 
@@ -8,6 +8,8 @@ import { CardData } from './card-data.model';
   styleUrls: ['./board.component.css'],
 })
 export class BoardComponent implements OnInit {
+  @Input() data!: CardData;
+
   cardImages = [
     { breed: 'bouvier', image: 'bouvier/n02106382_2715' },
     { breed: 'akita', image: 'akita/Japaneseakita' },
@@ -34,6 +36,7 @@ export class BoardComponent implements OnInit {
   flippedCards: CardData[] = [];
 
   matchedCount = 0;
+  mooveCount = 0;
 
   shuffleArray(anArray: any[]): any[] {
     return anArray
@@ -74,23 +77,32 @@ export class BoardComponent implements OnInit {
       if (this.flippedCards.length > 1) {
         this.checkForCardMatch();
       }
-    } else if (cardInfo.state === 'flipped') {
-      cardInfo.state = 'default';
-      this.flippedCards.pop();
     }
   }
 
   checkForCardMatch(): void {
+    this.mooveCount += 1;
+
     setTimeout(() => {
       const cardOne = this.flippedCards[0];
       const cardTwo = this.flippedCards[1];
       const nextState =
-        cardOne.imageId === cardTwo.imageId ? 'matched' : 'default';
+        cardOne.imageId === cardTwo.imageId ? 'flipped' : 'not-matched';
       cardOne.state = cardTwo.state = nextState;
 
-      this.flippedCards = [];
-
-      if (nextState === 'matched') {
+      if (nextState === 'flipped') {
+        cardOne.state = cardTwo.state = 'green-match';
+        setTimeout(() => {
+          cardOne.state = cardTwo.state = 'flipped';
+        }, 5000);
+      }
+      if (nextState === 'not-matched') {
+        setTimeout(() => {
+          cardOne.state = cardTwo.state = 'default';
+          this.flippedCards = [];
+        }, 5000);
+      }
+      if (nextState === 'flipped') {
         this.matchedCount++;
 
         // if (this.matchedCount === this.cardImages.length) {

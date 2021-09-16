@@ -6,10 +6,11 @@
   box-shadow: 10px 10px 43px -18px rgba(0, 0, 0, 0.75);
   border-radius: 5px;
   height: 200px;
-  width: 200px;
+  width: 100%;
   cursor: pointer;
   position: relative;
   transform-style: preserve-3d;
+  box-sizing: border-box;
 }
 .face {
   display: block;
@@ -31,8 +32,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
-  /* padding: 10px 5px 25px; */
 }
 
 .face.front > h3 {
@@ -41,7 +40,6 @@
 }
 
 .face.front > img {
-  /* display: block; */
   width: 70%;
   height: 60%;
   object-fit: cover;
@@ -74,5 +72,5 @@
 }
 
 a {
-  margin: 0;
+  margin-bottom: 10px;
 }

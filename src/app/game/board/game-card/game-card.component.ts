@@ -29,14 +29,29 @@ import { CardData } from '../card-data.model';
       ),
       state(
         'matched',
+
         style({
-          visibility: 'false',
-          transform: 'scale(0.05)',
-          opacity: 0,
+          transform: 'perspective(600px) rotateY(180deg)',
+        })
+      ),
+      state(
+        'not-matched',
+
+        style({
+          transform: 'perspective(600px) rotateY(180deg)',
+          border: '1px solid red',
+        })
+      ),
+      state(
+        'green-match',
+
+        style({
+          transform: 'perspective(600px) rotateY(180deg)',
+          border: '1px solid green',
         })
       ),
       transition('default => flipped', [animate('400ms')]),
-      transition('flipped => default', [animate('400ms')]),
+      transition('not-matched => default', [animate('400ms')]),
       transition('* => matched', [animate('400ms')]),
     ]),
   ],
