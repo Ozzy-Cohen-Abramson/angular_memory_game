@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule, routingComponetns } from './app-routing.module';
 import { MatInputModule } from '@angular/material/input';
@@ -42,6 +43,7 @@ import { DogInfoComponent } from './information/dog-info/dog-info.component';
     MatDialogModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

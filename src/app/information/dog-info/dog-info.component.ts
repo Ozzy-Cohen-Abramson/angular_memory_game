@@ -1,15 +1,25 @@
+import { HttpClient } from '@angular/common/http';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dog-info',
   templateUrl: './dog-info.component.html',
-  styleUrls: ['./dog-info.component.css']
+  styleUrls: ['./dog-info.component.css'],
 })
 export class DogInfoComponent implements OnInit {
-
-  constructor() { }
+  pathName: string = '';
+  urlArr: string[] = [];
+  breedFromUrl: string = '';
+  dogImgArr: any;
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+    this.pathName = window.location.pathname;
+    this.urlArr = this.pathName.split('/');
+    this.breedFromUrl = this.urlArr[2];
+    this.http
+      .get(`https://dog.ceo/api/breed/${this.breedFromUrl}/images/random/5`)
+      .subscribe((res: any) => (this.dogImgArr = res.message));
   }
-
 }
