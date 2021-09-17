@@ -1,1 +1,37 @@
-<p>information works!</p>
+<div class="info-container">
+  <div class="search">
+    <form action="" class="search-bar">
+      <mat-form-field class="example-full-width form-field" appearance="fill">
+        <mat-label>Choose breed</mat-label>
+        <input
+          type="text"
+          placeholder="Breed"
+          aria-label="Number"
+          matInput
+          [formControl]="myControl"
+          [matAutocomplete]="auto"
+          [(ngModel)]="breedName"
+        />
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option"
+          >
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <a
+        href="/info/{{ breedName }}"
+        type="submit"
+        (click)="searchBreed()"
+        class="search-btn"
+      >
+        <span>Search</span>
+      </a>
+    </form>
+  </div>
+  <div class="info-section">
+    <app-dog-info></app-dog-info>
+  </div>
+</div>

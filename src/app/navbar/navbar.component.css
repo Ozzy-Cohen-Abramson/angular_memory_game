@@ -4,6 +4,8 @@ ul {
   justify-content: center;
 
   list-style: none;
+  width: 50%;
+  margin: 15px auto;
 }
 
 li {

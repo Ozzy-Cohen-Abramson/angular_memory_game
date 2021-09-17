@@ -7,6 +7,7 @@ import { ScoresComponent } from './scores/scores.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'scores', component: ScoresComponent },
+  { path: 'info', component: InformationComponent },
   { path: 'info/:breed', component: InformationComponent },
 ];
 

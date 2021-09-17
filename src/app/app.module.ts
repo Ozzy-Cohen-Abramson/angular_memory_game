@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule, routingComponetns } from './app-routing.module';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -16,6 +17,7 @@ import { BoardComponent } from './game/board/board.component';
 import { TimerComponent } from './game/timer/timer.component';
 import { GameCardComponent } from './game/board/game-card/game-card.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DogInfoComponent } from './information/dog-info/dog-info.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     BoardComponent,
     TimerComponent,
     GameCardComponent,
+    DogInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatSelectModule,
     MatDialogModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

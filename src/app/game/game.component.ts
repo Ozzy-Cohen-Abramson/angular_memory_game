@@ -15,11 +15,11 @@ export class GameComponent implements OnInit {
   boardSize: any = 4;
   player: any = '';
 
-  boardCreated = true;
+  boardCreated = false;
   boards: Board[] = [
     { value: 2, viewValue: '2X2' },
-    { value: 4, viewValue: '4X4' },
-    { value: 6, viewValue: '6X6' },
+    { value: 8, viewValue: '4X4' },
+    { value: 18, viewValue: '6X6' },
   ];
 
   constructor() {}
@@ -27,10 +27,8 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {}
 
   createBoard(name: string, board: string) {
-    // console.log(name, board);
     this.boardCreated = true;
     this.boardSize = parseInt(board);
-    this.player = new Player(name, (this.boardSize * this.boardSize) / 2);
-    console.log(this.player);
+    this.player = new Player(name, this.boardSize);
   }
 }

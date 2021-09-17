@@ -8,8 +8,8 @@
     <mat-label>Choose size:</mat-label>
     <mat-select [(ngModel)]="boardSize">
       <mat-option value="2">2X2</mat-option>
-      <mat-option value="4">4X4</mat-option>
-      <mat-option value="6">6X6</mat-option>
+      <mat-option value="8">4X4</mat-option>
+      <mat-option value="18">6X6</mat-option>
     </mat-select>
   </mat-form-field>
   <button
@@ -21,4 +21,4 @@
   </button>
 </div>
 
-<app-board *ngIf="boardCreated"></app-board>
+<app-board *ngIf="boardCreated" [player]="player"></app-board>

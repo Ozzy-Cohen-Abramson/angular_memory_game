@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Player } from 'src/app/shared/player.model';
 import { CardData } from './card-data.model';
 
 @Component({
@@ -8,6 +9,7 @@ import { CardData } from './card-data.model';
   styleUrls: ['./board.component.css'],
 })
 export class BoardComponent implements OnInit {
+  @Input() player!: Player;
   @Input() data!: CardData;
 
   cardImages = [
@@ -37,6 +39,7 @@ export class BoardComponent implements OnInit {
 
   matchedCount = 0;
   mooveCount = 0;
+  boardSize = 1;
 
   shuffleArray(anArray: any[]): any[] {
     return anArray
@@ -49,19 +52,23 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.setupCards();
+    console.log(this.player);
   }
 
   setupCards(): void {
     this.cards = [];
     this.cardImages.forEach((dog) => {
-      const cardData: CardData = {
-        breed: dog.breed,
-        imageId: dog.image,
-        state: 'default',
-      };
+      if (this.boardSize <= this.player.size) {
+        this.boardSize += 1;
+        const cardData: CardData = {
+          breed: dog.breed,
+          imageId: dog.image,
+          state: 'default',
+        };
 
-      this.cards.push({ ...cardData });
-      this.cards.push({ ...cardData });
+        this.cards.push({ ...cardData });
+        this.cards.push({ ...cardData });
+      }
     });
 
     this.cards = this.shuffleArray(this.cards);
@@ -82,7 +89,6 @@ export class BoardComponent implements OnInit {
 
   checkForCardMatch(): void {
     this.mooveCount += 1;
-
     setTimeout(() => {
       const cardOne = this.flippedCards[0];
       const cardTwo = this.flippedCards[1];
@@ -91,6 +97,8 @@ export class BoardComponent implements OnInit {
       cardOne.state = cardTwo.state = nextState;
 
       if (nextState === 'flipped') {
+        this.flippedCards = [];
+
         cardOne.state = cardTwo.state = 'green-match';
         setTimeout(() => {
           cardOne.state = cardTwo.state = 'flipped';
@@ -105,15 +113,23 @@ export class BoardComponent implements OnInit {
       if (nextState === 'flipped') {
         this.matchedCount++;
 
-        // if (this.matchedCount === this.cardImages.length) {
-        //   const dialogRef = this.dialog.open(RestartDialogComponent, {
-        //     disableClose: true
-        //   });
+        if (this.matchedCount === this.player.size) {
+          alert(
+            'mooves: ' +
+              this.mooveCount +
+              ' , name: ' +
+              this.player.name +
+              ', board size: ' +
+              this.player.size
+          );
+          // const dialogRef = this.dialog.open(RestartDialogComponent, {
+          //   disableClose: true
+          // });
 
-        //   dialogRef.afterClosed().subscribe(() => {
-        //     this.restart();
-        //   });
-        // }
+          // dialogRef.afterClosed().subscribe(() => {
+          //   this.restart();
+          // });
+        }
       }
     }, 1000);
   }

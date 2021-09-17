@@ -11,6 +11,12 @@
   font-weight: 700;
 }
 
+.player-name {
+  position: absolute;
+  top: 35px;
+  right: 200px;
+}
+
 .board-container {
   display: grid;
   justify-content: center;
