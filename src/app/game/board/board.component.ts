@@ -3,6 +3,8 @@ import { trigger, state, style } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { Player } from 'src/app/shared/player.model';
 import { CardData } from './card-data.model';
+import * as moment from 'moment';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-board',
@@ -29,7 +31,6 @@ import { CardData } from './card-data.model';
       state(
         '18',
         style({
-          // marginTop: '50px',
           gridTemplateColumns: 'repeat(9, 9%)',
           gap: '15px',
         })
@@ -41,6 +42,9 @@ export class BoardComponent implements OnInit {
   @Input() player!: Player;
   @Input() data!: CardData;
 
+  gameDate: any;
+  startTime: any;
+  date: any;
   counter: number = 5;
   fetchUrl: string[] = [];
   dogObj: any = {};
@@ -86,12 +90,9 @@ export class BoardComponent implements OnInit {
   }
 
   setupCards(): void {
-    console.log(this.cardImages);
-
     this.cards = [];
     setTimeout(() => {
       this.cardImages.forEach((dog) => {
-        // console.log(dog.image);
         if (this.boardSize <= this.player.size) {
           this.boardSize += 1;
           const cardData: CardData = {
@@ -149,21 +150,23 @@ export class BoardComponent implements OnInit {
         this.matchedCount++;
 
         if (this.matchedCount === this.player.size) {
-          alert(
-            'mooves: ' +
-              this.mooveCount +
-              ' , name: ' +
-              this.player.name +
-              ', board size: ' +
-              this.player.size
-          );
-          // const dialogRef = this.dialog.open(RestartDialogComponent, {
-          //   disableClose: true
-          // });
+          this.date = new Date();
 
-          // dialogRef.afterClosed().subscribe(() => {
-          //   this.restart();
-          // });
+          this.startTime = localStorage.getItem('StartTime');
+          localStorage.setItem(
+            'UserAll',
+            JSON.stringify({
+              User: this.player.name,
+              BoardSize: this.player.size,
+              Moves: this.mooveCount,
+              EndTime: (this.date.getTime() - this.startTime) / 1000,
+              Score: Math.round(
+                this.date.getTime() - this.startTime + this.mooveCount * 0.5
+              ),
+
+              Date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+            })
+          );
         }
       }
     }, 1000);

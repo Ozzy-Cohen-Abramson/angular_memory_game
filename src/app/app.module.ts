@@ -19,6 +19,9 @@ import { TimerComponent } from './game/timer/timer.component';
 import { GameCardComponent } from './game/board/game-card/game-card.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DogInfoComponent } from './information/dog-info/dog-info.component';
+import { BigBoardComponent } from './scores/big-board/big-board.component';
+import { MediumBoardComponent } from './scores/medium-board/medium-board.component';
+import { SmallBoardComponent } from './scores/small-board/small-board.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { DogInfoComponent } from './information/dog-info/dog-info.component';
     TimerComponent,
     GameCardComponent,
     DogInfoComponent,
+    BigBoardComponent,
+    MediumBoardComponent,
+    SmallBoardComponent,
   ],
   imports: [
     BrowserModule,

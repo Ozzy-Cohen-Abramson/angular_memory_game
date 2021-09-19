@@ -1,0 +1,18 @@
+<h3 class="score-title">6X6</h3>
+
+<table>
+  <tr>
+    <th>Player's name</th>
+    <th>Date</th>
+    <th>Time (s)</th>
+    <th>Moves</th>
+    <th>Total score</th>
+  </tr>
+  <tr *ngFor="let player of bigScoreArr">
+    <td>{{ player.User }}</td>
+    <td>{{ player.Date }}</td>
+    <td>{{ player.EndTime }}</td>
+    <td>{{ player.Moves }}</td>
+    <td>{{ player.Score }}</td>
+  </tr>
+</table>
