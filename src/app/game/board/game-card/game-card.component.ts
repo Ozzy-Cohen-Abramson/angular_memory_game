@@ -25,6 +25,8 @@ import { CardData } from '../card-data.model';
         'flipped',
         style({
           transform: 'perspective(600px) rotateY(180deg)',
+          transition: 'all 0.3s ease',
+          border: '5px solid transparent',
         })
       ),
       state(
@@ -32,6 +34,8 @@ import { CardData } from '../card-data.model';
 
         style({
           transform: 'perspective(600px) rotateY(180deg)',
+          transition: 'all 0.3s ease',
+          border: '5px solid transparent',
         })
       ),
       state(
@@ -39,7 +43,8 @@ import { CardData } from '../card-data.model';
 
         style({
           transform: 'perspective(600px) rotateY(180deg)',
-          border: '1px solid red',
+          border: '5px solid red',
+          transition: 'all 0.3s ease',
         })
       ),
       state(
@@ -47,7 +52,8 @@ import { CardData } from '../card-data.model';
 
         style({
           transform: 'perspective(600px) rotateY(180deg)',
-          border: '1px solid green',
+          transition: 'all 0.3s ease',
+          border: '5px solid green',
         })
       ),
       transition('default => flipped', [animate('400ms')]),
