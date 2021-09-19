@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-scores',
   templateUrl: './scores.component.html',
-  styles: [],
+  styles: ['.tip {text-align: center}'],
 })
 export class ScoresComponent implements OnInit {
   constructor() {}

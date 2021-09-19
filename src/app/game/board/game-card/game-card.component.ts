@@ -26,7 +26,6 @@ import { CardData } from '../card-data.model';
         style({
           transform: 'perspective(600px) rotateY(180deg)',
           transition: 'all 0.3s ease',
-          border: '5px solid transparent',
         })
       ),
       state(

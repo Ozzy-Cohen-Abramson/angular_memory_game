@@ -47,6 +47,11 @@
   margin-top: 50px;
 }
 
+@media (max-width: 1500px) {
+  .board-container {
+    grid-template-columns: repeat(4, 200px) !important;
+  }
+}
 @media (max-width: 600px) {
   .board-container {
     grid-template-columns: repeat(2, 150px);

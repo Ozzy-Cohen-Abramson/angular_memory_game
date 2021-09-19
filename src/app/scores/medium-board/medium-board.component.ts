@@ -47,11 +47,19 @@ export class MediumBoardComponent implements OnInit {
         localStorage.getItem('mediumBoardScore') || '[]'
       );
     }
+    this.sortArr();
   }
 
   containsObject(obj: any, list: any) {
     if (list.length === 0) {
       return this.mediumScoreArr.push(this.userScore);
     }
+    this.sortArr();
+  }
+
+  sortArr() {
+    this.mediumScoreArr.sort(function (a: any, b: any) {
+      return a.Score - b.Score;
+    });
   }
 }

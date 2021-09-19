@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Player } from 'src/app/shared/player.model';
 import { CardData } from './card-data.model';
 import * as moment from 'moment';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-board',
@@ -167,6 +166,9 @@ export class BoardComponent implements OnInit {
               Date: moment().format('MMMM Do YYYY, h:mm:ss a'),
             })
           );
+          setTimeout(() => {
+            window.location.href = 'http://localhost:4200/scores';
+          }, 1000);
         }
       }
     }, 1000);

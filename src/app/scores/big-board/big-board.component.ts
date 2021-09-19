@@ -14,7 +14,7 @@ export class BigBoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.userScore = JSON.parse(localStorage.getItem('UserAll') || '{}');
-    if (this.userScore.BoardSize === 8) {
+    if (this.userScore.BoardSize === 18) {
       this.bigScoreArr = JSON.parse(
         localStorage.getItem('bigBoardScore') || '[]'
       );
@@ -37,16 +37,25 @@ export class BigBoardComponent implements OnInit {
         }
       }
     }
-    if (this.userScore.BoardSize !== 8) {
+    if (this.userScore.BoardSize !== 18) {
       this.bigScoreArr = JSON.parse(
         localStorage.getItem('bigBoardScore') || '[]'
       );
     }
+
+    this.sortArr();
   }
 
   containsObject(obj: any, list: any) {
     if (list.length === 0) {
       return this.bigScoreArr.push(this.userScore);
     }
+    this.sortArr();
+  }
+
+  sortArr() {
+    this.bigScoreArr.sort(function (a: any, b: any) {
+      return a.Score - b.Score;
+    });
   }
 }

@@ -47,17 +47,21 @@ export class SmallBoardComponent implements OnInit {
         localStorage.getItem('smallBoardScore') || '[]'
       );
     }
+    this.sortArr();
   }
 
   containsObject(obj: any, list: any) {
     if (list.length === 0) {
       return this.smallScoreArr.push(this.userScore);
     }
+    this.sortArr();
   }
-  // sortArr(a: any, b: any) {
-  //   this.smallScoreArr.sort((a: any, b: any) => {
-  //     return a - b;
-  //   });
-  //   console.log(this.smallScoreArr);
-  // }
+  sortArr() {
+    this.smallScoreArr = JSON.parse(
+      localStorage.getItem('smallBoardScore') || '[]'
+    );
+    this.smallScoreArr.sort(function (a: any, b: any) {
+      return a.Score - b.Score;
+    });
+  }
 }
