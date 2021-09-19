@@ -63,13 +63,11 @@ export class GameCardComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
-
-  // cardClicked() {
-  //   if (this.data.state === 'default') {
-  //     this.data.state = 'flipped';
-  //   }
-  // }
+  ngOnInit(): void {
+    if (this.data.breed.includes('-')) {
+      this.data.breed = this.data.breed.split('-')[0];
+    }
+  }
 
   showDetails() {
     console.log(this.data.breed);

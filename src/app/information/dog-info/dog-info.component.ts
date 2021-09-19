@@ -12,6 +12,7 @@ export class DogInfoComponent implements OnInit {
   urlArr: string[] = [];
   breedFromUrl: string = '';
   dogImgArr: any;
+  dogSubBreedArr: any;
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -21,5 +22,8 @@ export class DogInfoComponent implements OnInit {
     this.http
       .get(`https://dog.ceo/api/breed/${this.breedFromUrl}/images/random/5`)
       .subscribe((res: any) => (this.dogImgArr = res.message));
+    this.http
+      .get(`https://dog.ceo/api/breed/${this.breedFromUrl}/list`)
+      .subscribe((res: any) => (this.dogSubBreedArr = res.message));
   }
 }

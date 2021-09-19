@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { trigger, state, style } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 import { Player } from 'src/app/shared/player.model';
 import { CardData } from './card-data.model';
 
@@ -7,31 +8,44 @@ import { CardData } from './card-data.model';
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css'],
+  animations: [
+    trigger('board-size', [
+      state(
+        '2',
+        style({
+          marginTop: '70px',
+          gridTemplateColumns: 'repeat(2, 10%)',
+          gap: '15px',
+        })
+      ),
+      state(
+        '8',
+        style({
+          marginTop: '50px',
+          gridTemplateColumns: 'repeat(4, 10%)',
+          gap: '15px',
+        })
+      ),
+      state(
+        '18',
+        style({
+          // marginTop: '50px',
+          gridTemplateColumns: 'repeat(9, 9%)',
+          gap: '15px',
+        })
+      ),
+    ]),
+  ],
 })
 export class BoardComponent implements OnInit {
   @Input() player!: Player;
   @Input() data!: CardData;
 
-  cardImages = [
-    { breed: 'bouvier', image: 'bouvier/n02106382_2715' },
-    { breed: 'akita', image: 'akita/Japaneseakita' },
-    { breed: 'boxer', image: 'boxer/n02108089_3162' },
-    { breed: 'pyrenees', image: 'pyrenees/n02111500_4104' },
-    { breed: 'beagle', image: 'beagle/n02088364_12154' },
-    { breed: 'pug', image: 'pug/n02110958_6627' },
-    { breed: 'dingo', image: 'dingo/n02115641_6250' },
-    { breed: 'chow', image: 'chow/n02112137_3523' },
-    { breed: 'schipperke', image: 'schipperke/n02104365_8919' },
-    { breed: 'coonhound', image: 'coonhound/n02089078_243' },
-    { breed: 'pitbull', image: 'pitbull/20190801_154956' },
-    { breed: 'entlebucher', image: 'entlebucher/n02108000_2065' },
-    { breed: 'lhasa', image: 'lhasa/n02098413_4100' },
-    { breed: 'kelpie', image: 'kelpie/n02105412_2301' },
-    { breed: 'labrador', image: 'labrador/n02099712_7968' },
-    { breed: 'labrador', image: 'labrador/n02099712_2223' },
-    { breed: 'pyrenees', image: 'pyrenees/n02111500_2010' },
-    { breed: 'pembroke', image: 'pembroke/n02113023_5985' },
-  ];
+  counter: number = 5;
+  fetchUrl: string[] = [];
+  dogObj: any = {};
+  cardImages: Array<any> = [];
+  cardBreedFetch: string[] = [];
 
   cards: CardData[] = [];
 
@@ -39,8 +53,7 @@ export class BoardComponent implements OnInit {
 
   matchedCount = 0;
   mooveCount = 0;
-  boardSize = 1;
-
+  boardSize: number = 0;
   shuffleArray(anArray: any[]): any[] {
     return anArray
       .map((a) => [Math.random(), a])
@@ -48,30 +61,52 @@ export class BoardComponent implements OnInit {
       .map((a) => a[1]);
   }
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+    this.counterDown();
+    for (let i = 0; i < this.player.size; ++i) {
+      this.http
+        .get('https://dog.ceo/api/breeds/image/random')
+        .subscribe((res: any) => {
+          this.fetchUrl = res.message.split('/');
+          this.dogObj = { breed: this.fetchUrl[4], image: res.message };
+          this.cardBreedFetch.push(this.fetchUrl[4]);
+          this.cardImages.push(this.dogObj);
+        });
+    }
+
     this.setupCards();
-    console.log(this.player);
+  }
+
+  counterDown(): void {
+    setInterval(() => {
+      this.counter = this.counter - 1;
+    }, 1000);
   }
 
   setupCards(): void {
+    console.log(this.cardImages);
+
     this.cards = [];
-    this.cardImages.forEach((dog) => {
-      if (this.boardSize <= this.player.size) {
-        this.boardSize += 1;
-        const cardData: CardData = {
-          breed: dog.breed,
-          imageId: dog.image,
-          state: 'default',
-        };
+    setTimeout(() => {
+      this.cardImages.forEach((dog) => {
+        // console.log(dog.image);
+        if (this.boardSize <= this.player.size) {
+          this.boardSize += 1;
+          const cardData: CardData = {
+            breed: dog.breed,
+            imageId: dog.image,
+            state: 'default',
+          };
 
-        this.cards.push({ ...cardData });
-        this.cards.push({ ...cardData });
-      }
-    });
+          this.cards.push({ ...cardData });
+          this.cards.push({ ...cardData });
+        }
+      });
 
-    this.cards = this.shuffleArray(this.cards);
+      this.cards = this.shuffleArray(this.cards);
+    }, 5000);
   }
 
   cardClicked(index: number): void {

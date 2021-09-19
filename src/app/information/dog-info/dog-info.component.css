@@ -3,15 +3,31 @@
   flex-direction: column;
 }
 
-p {
+.sub-breed {
   color: black;
   background-color: white;
-  width: 92%;
-  height: 30vh;
+  max-width: 86%;
+  max-height: 30vh;
   margin-top: 0;
   text-align: center;
-  line-height: 200px;
   border-radius: 5px;
+  padding: 15px;
+}
+
+h3 {
+  text-decoration: underline;
+  text-align: start;
+}
+
+.sub-breed-list {
+  /* display: flex; */
+
+  max-width: 91%;
+  /* word-break: break-all; */
+  margin-bottom: -150px;
+  text-align: start;
+  font-weight: 400;
+  font-size: 18px;
 }
 
 .dog-info-container {

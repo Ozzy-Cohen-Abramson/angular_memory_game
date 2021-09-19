@@ -12,12 +12,14 @@ export class TimerComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    setInterval(() => {
-      this.seconds += 1;
-      if (this.seconds % 60 === 0) {
-        this.seconds = 0;
-        this.minutes += 1;
-      }
-    }, 1000);
+    setTimeout(() => {
+      setInterval(() => {
+        this.seconds += 1;
+        if (this.seconds % 60 === 0) {
+          this.seconds = 0;
+          this.minutes += 1;
+        }
+      }, 1000);
+    }, 4000);
   }
 }

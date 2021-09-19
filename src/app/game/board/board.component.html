@@ -1,6 +1,14 @@
 <app-timer></app-timer>
 <h3 class="player-name">Player: {{ player.name }}</h3>
-<div class="board-container">
+<ng-template #number
+  ><span class="counter"> Game starts in {{ counter }} </span></ng-template
+>
+
+<div
+  class="board-container"
+  [@board-size]="player.size"
+  *ngIf="cards.length !== 0; else number"
+>
   <p class="moove-count">
     Mooves: <span class="mooves">{{ mooveCount }}</span>
   </p>

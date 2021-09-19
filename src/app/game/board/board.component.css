@@ -17,6 +17,27 @@
   right: 200px;
 }
 
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  font-size: 45px;
+  animation: 1s linear infinite alternate zoom;
+}
+
+@keyframes zoom {
+  0% {
+    font-size: 45px;
+  }
+  50% {
+    font-size: 35px;
+  }
+  100% {
+    font-size: 45px;
+  }
+}
+
 .board-container {
   display: grid;
   justify-content: center;

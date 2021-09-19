@@ -4,13 +4,13 @@
   </div>
   <div class="face front">
     <h3>{{ data.breed }}</h3>
-    <img [src]="'https://images.dog.ceo/breeds/' + data.imageId + '.jpg'" />
+    <img [src]="data.imageId" />
     <a
       class="info"
       (click)="showDetails()"
       href="/info/{{ data.breed }}"
       target="_blank"
-      >Information</a
+      >Info</a
     >
   </div>
 </div>
