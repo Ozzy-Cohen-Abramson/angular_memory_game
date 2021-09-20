@@ -57,12 +57,6 @@ export class BoardComponent implements OnInit {
   matchedCount = 0;
   mooveCount = 0;
   boardSize: number = 0;
-  shuffleArray(anArray: any[]): any[] {
-    return anArray
-      .map((a) => [Math.random(), a])
-      .sort((a, b) => a[0] - b[0])
-      .map((a) => a[1]);
-  }
 
   constructor(private http: HttpClient) {}
 
@@ -107,6 +101,13 @@ export class BoardComponent implements OnInit {
 
       this.cards = this.shuffleArray(this.cards);
     }, 5000);
+  }
+
+  shuffleArray(anArray: any[]): any[] {
+    return anArray
+      .map((a) => [Math.random(), a])
+      .sort((a, b) => a[0] - b[0])
+      .map((a) => a[1]);
   }
 
   cardClicked(index: number): void {
