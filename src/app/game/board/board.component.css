@@ -1,9 +1,9 @@
 .moove-count {
   position: absolute;
-  top: 20px;
-  right: 35px;
+  top: -5px;
+  right: 45px;
   background-color: rgba(255, 255, 255, 0.822);
-  padding: 20px 15px;
+  padding: 10px 20px;
   border-radius: 5px;
 }
 
@@ -13,7 +13,7 @@
 
 .player-name {
   position: absolute;
-  top: 35px;
+  top: 0;
   right: 200px;
 }
 
@@ -44,7 +44,9 @@
   grid-template-columns: repeat(9, 9%);
   gap: 15px;
 
-  margin-top: 50px;
+  margin-top: 10px !important;
+  padding-bottom: 15px;
+  z-index: 2;
 }
 
 @media (max-width: 1500px) {
