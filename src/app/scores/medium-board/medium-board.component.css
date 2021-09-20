@@ -27,3 +27,7 @@ tr:nth-child(odd) {
 tr:first-child {
   background-color: #2ca8a8;
 }
+
+.user-name {
+  text-transform: capitalize;
+}

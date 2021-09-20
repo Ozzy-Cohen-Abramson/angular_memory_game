@@ -13,29 +13,25 @@ export class BigBoardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    this.bigScoreLocal = JSON.parse(
+      localStorage.getItem('bigBoardScore') || '[]'
+    );
     this.userScore = JSON.parse(localStorage.getItem('UserAll') || '{}');
-    if (this.userScore.BoardSize === 18) {
+    if (this.bigScoreLocal.length) {
       this.bigScoreArr = JSON.parse(
         localStorage.getItem('bigBoardScore') || '[]'
       );
-      this.containsObject(this.userScore, this.bigScoreArr);
+    }
+    if (this.userScore.BoardSize === 18) {
+      this.containsObjects(this.userScore, this.bigScoreArr);
+      console.log(this.bigScoreArr);
 
       localStorage.setItem('bigBoardScore', JSON.stringify(this.bigScoreArr));
-      let i;
+      console.log(this.bigScoreLocal.length);
 
-      for (i = 0; i < this.bigScoreArr.length; ++i) {
-        if (this.bigScoreArr[i].Date === this.userScore.Date) {
-          return console.log(this.bigScoreArr[i].Date === this.userScore.Date);
-        }
-      }
-      i = 0;
-      for (i = 0; i < this.bigScoreArr.length; ++i) {
-        if (this.bigScoreArr[i].Score < this.userScore.Score) {
-          return this.bigScoreArr.push(this.userScore);
-        } else {
-          return this.bigScoreArr.unshift(this.userScore);
-        }
-      }
+      this.checkIfExist();
+
+      localStorage.setItem('bigBoardScore', JSON.stringify(this.bigScoreArr));
     }
     if (this.userScore.BoardSize !== 18) {
       this.bigScoreArr = JSON.parse(
@@ -46,14 +42,30 @@ export class BigBoardComponent implements OnInit {
     this.sortArr();
   }
 
-  containsObject(obj: any, list: any) {
+  containsObjects(obj: any, list: any) {
     if (list.length === 0) {
-      return this.bigScoreArr.push(this.userScore);
+      this.bigScoreArr.push(this.userScore);
     }
-    this.sortArr();
+  }
+
+  checkIfExist() {
+    for (let i = 0; i < this.bigScoreArr.length; ++i) {
+      if (this.bigScoreArr[i].Date === this.userScore.Date) {
+        return console.log('Already in the list!');
+      }
+    }
+    for (let i = 0; i < this.bigScoreArr.length; ++i) {
+      console.log(this.bigScoreArr.length);
+      if (this.bigScoreArr[i].Date !== this.userScore.Date) {
+        return this.bigScoreArr.push(this.userScore);
+      }
+    }
   }
 
   sortArr() {
+    this.bigScoreArr = JSON.parse(
+      localStorage.getItem('bigBoardScore') || '[]'
+    );
     this.bigScoreArr.sort(function (a: any, b: any) {
       return a.Score - b.Score;
     });

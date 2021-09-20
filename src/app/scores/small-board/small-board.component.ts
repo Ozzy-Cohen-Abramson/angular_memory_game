@@ -13,49 +13,61 @@ export class SmallBoardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    this.smallScoreLocal = JSON.parse(
+      localStorage.getItem('smallBoardScore') || '[]'
+    );
     this.userScore = JSON.parse(localStorage.getItem('UserAll') || '{}');
-    if (this.userScore.BoardSize === 2) {
+    if (this.smallScoreLocal.length) {
       this.smallScoreArr = JSON.parse(
         localStorage.getItem('smallBoardScore') || '[]'
       );
-      this.containsObject(this.userScore, this.smallScoreArr);
+    }
+    if (this.userScore.BoardSize === 2) {
+      this.containsObjects(this.userScore, this.smallScoreArr);
+      console.log(this.smallScoreArr);
 
       localStorage.setItem(
         'smallBoardScore',
         JSON.stringify(this.smallScoreArr)
       );
-      let i;
+      console.log(this.smallScoreLocal.length);
 
-      for (i = 0; i < this.smallScoreArr.length; ++i) {
-        if (this.smallScoreArr[i].Date === this.userScore.Date) {
-          return console.log(
-            this.smallScoreArr[i].Date === this.userScore.Date
-          );
-        }
-      }
-      i = 0;
-      for (i = 0; i < this.smallScoreArr.length; ++i) {
-        if (this.smallScoreArr[i].Score < this.userScore.Score) {
-          return this.smallScoreArr.push(this.userScore);
-        } else {
-          return this.smallScoreArr.unshift(this.userScore);
-        }
-      }
+      this.checkIfExist();
+
+      localStorage.setItem(
+        'smallBoardScore',
+        JSON.stringify(this.smallScoreArr)
+      );
     }
     if (this.userScore.BoardSize !== 2) {
       this.smallScoreArr = JSON.parse(
         localStorage.getItem('smallBoardScore') || '[]'
       );
     }
+
     this.sortArr();
   }
 
-  containsObject(obj: any, list: any) {
+  containsObjects(obj: any, list: any) {
     if (list.length === 0) {
-      return this.smallScoreArr.push(this.userScore);
+      this.smallScoreArr.push(this.userScore);
     }
-    this.sortArr();
   }
+
+  checkIfExist() {
+    for (let i = 0; i < this.smallScoreArr.length; ++i) {
+      if (this.smallScoreArr[i].Date === this.userScore.Date) {
+        return console.log('Already in the list!');
+      }
+    }
+    for (let i = 0; i < this.smallScoreArr.length; ++i) {
+      console.log(this.smallScoreArr.length);
+      if (this.smallScoreArr[i].Date !== this.userScore.Date) {
+        return this.smallScoreArr.push(this.userScore);
+      }
+    }
+  }
+
   sortArr() {
     this.smallScoreArr = JSON.parse(
       localStorage.getItem('smallBoardScore') || '[]'
