@@ -5,8 +5,11 @@
     <div class="sub-breed" *ngIf="dogImgArr">
       <h3>Dog sub-breeds</h3>
       <div *ngIf="dogSubBreedArr.length; else none" class="sub-breed-list">
-        <span *ngFor="let dog of dogSubBreedArr">{{ dog }}, </span>
+        <span *ngFor="let dog of dogSubBreedArr; let last = last"
+          >{{ dog }}<span *ngIf="!last; else dot">, </span></span
+        >
       </div>
+      <ng-template #dot>.</ng-template>
       <ng-template #none>None</ng-template>
     </div>
     <div *ngFor="let img of dogImgArr" class="img-container">
