@@ -25,10 +25,8 @@ export class BigBoardComponent implements OnInit {
     }
     if (this.userScore.BoardSize === 18) {
       this.containsObjects(this.userScore, this.bigScoreArr);
-      console.log(this.bigScoreArr);
 
       localStorage.setItem('bigBoardScore', JSON.stringify(this.bigScoreArr));
-      console.log(this.bigScoreLocal.length);
 
       this.checkIfExist();
 
@@ -52,11 +50,10 @@ export class BigBoardComponent implements OnInit {
   checkIfExist() {
     for (let i = 0; i < this.bigScoreArr.length; ++i) {
       if (this.bigScoreArr[i].Date === this.userScore.Date) {
-        return console.log('Already in the list!');
+        return;
       }
     }
     for (let i = 0; i < this.bigScoreArr.length; ++i) {
-      console.log(this.bigScoreArr.length);
       if (this.bigScoreArr[i].Date !== this.userScore.Date) {
         return this.bigScoreArr.push(this.userScore);
       }
@@ -70,19 +67,23 @@ export class BigBoardComponent implements OnInit {
     this.bigScoreArr.sort(function (a: any, b: any) {
       return a.Score - b.Score;
     });
-    if (this.userScore.BoardSize === 18) {
-      this.setDisplayTable();
-    }
+    this.setDisplayTable();
   }
 
   setDisplayTable() {
     const { displayArr } = this;
     const { userScore } = this;
-    for (let i = 0; i < 5; ++i) {
-      displayArr.push(this.bigScoreArr[i]);
-    }
-    if (!displayArr.filter((row: any) => row.Date === userScore.Date).length) {
-      displayArr.push(userScore);
+    const { bigScoreArr } = this;
+    if (bigScoreArr.length > 5) {
+      for (let i = 0; i < 5; ++i) {
+        displayArr.push(bigScoreArr[i]);
+      }
+      if (!displayArr.filter((row: any) => row === userScore.Date).length) {
+        console.log(displayArr);
+        if (this.userScore.BoardSize === 8) {
+          displayArr.push(userScore);
+        }
+      }
     }
   }
 }
