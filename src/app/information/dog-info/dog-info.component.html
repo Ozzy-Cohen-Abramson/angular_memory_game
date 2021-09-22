@@ -4,10 +4,7 @@
   <div class="dog-info-container">
     <div class="sub-breed" *ngIf="dogImgArr">
       <h3>Dog sub-breeds</h3>
-      <div
-        *ngIf="dogSubBreedArr.length !== 0; else none"
-        class="sub-breed-list"
-      >
+      <div *ngIf="dogSubBreedArr.length; else none" class="sub-breed-list">
         <span *ngFor="let dog of dogSubBreedArr">{{ dog }}, </span>
       </div>
       <ng-template #none>None</ng-template>

@@ -10,6 +10,7 @@ export class BigBoardComponent implements OnInit {
   bigScoreLocal: any = [];
 
   bigScoreArr: any = [];
+  displayArr: any = [];
   constructor() {}
 
   ngOnInit(): void {
@@ -69,5 +70,19 @@ export class BigBoardComponent implements OnInit {
     this.bigScoreArr.sort(function (a: any, b: any) {
       return a.Score - b.Score;
     });
+    if (this.userScore.BoardSize === 18) {
+      this.setDisplayTable();
+    }
+  }
+
+  setDisplayTable() {
+    const { displayArr } = this;
+    const { userScore } = this;
+    for (let i = 0; i < 5; ++i) {
+      displayArr.push(this.bigScoreArr[i]);
+    }
+    if (!displayArr.filter((row: any) => row.Date === userScore.Date).length) {
+      displayArr.push(userScore);
+    }
   }
 }
