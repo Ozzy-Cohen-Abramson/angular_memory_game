@@ -16,6 +16,9 @@ export class GameComponent implements OnInit {
   player: any = '';
 
   boardCreated = false;
+
+  // loop over this!
+
   boards: Board[] = [
     { value: 2, viewValue: '2X2' },
     { value: 8, viewValue: '4X4' },

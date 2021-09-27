@@ -7,9 +7,9 @@
   <mat-form-field>
     <mat-label>Choose size:</mat-label>
     <mat-select [(ngModel)]="boardSize">
-      <mat-option value="2">2X2</mat-option>
-      <mat-option value="8">4X4</mat-option>
-      <mat-option value="18">6X6</mat-option>
+      <mat-option *ngFor="let board of boards" value="{{ board.value }}">{{
+        board.viewValue
+      }}</mat-option>
     </mat-select>
   </mat-form-field>
   <button

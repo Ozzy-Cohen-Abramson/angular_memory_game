@@ -10,6 +10,7 @@ export class MediumBoardComponent implements OnInit {
   mediumScoreLocal: any = [];
 
   mediumScoreArr: any = [];
+  displayArr: any = [];
   constructor() {}
 
   ngOnInit(): void {
@@ -24,13 +25,11 @@ export class MediumBoardComponent implements OnInit {
     }
     if (this.userScore.BoardSize === 8) {
       this.containsObjects(this.userScore, this.mediumScoreArr);
-      console.log(this.mediumScoreArr);
 
       localStorage.setItem(
         'mediumBoardScore',
         JSON.stringify(this.mediumScoreArr)
       );
-      console.log(this.mediumScoreLocal.length);
 
       this.checkIfExist();
 
@@ -57,7 +56,7 @@ export class MediumBoardComponent implements OnInit {
   checkIfExist() {
     for (let i = 0; i < this.mediumScoreArr.length; ++i) {
       if (this.mediumScoreArr[i].Date === this.userScore.Date) {
-        return console.log('Already in the list!');
+        return;
       }
     }
     for (let i = 0; i < this.mediumScoreArr.length; ++i) {
@@ -75,5 +74,24 @@ export class MediumBoardComponent implements OnInit {
     this.mediumScoreArr.sort(function (a: any, b: any) {
       return a.Score - b.Score;
     });
+
+    this.setDisplayTable();
+  }
+
+  setDisplayTable() {
+    const { displayArr } = this;
+    const { userScore } = this;
+    const { mediumScoreArr } = this;
+    if (mediumScoreArr.length > 5) {
+      for (let i = 0; i < 5; ++i) {
+        displayArr.push(mediumScoreArr[i]);
+      }
+      if (!displayArr.filter((row: any) => row === userScore.Date).length) {
+        console.log(displayArr);
+        if (this.userScore.BoardSize === 8) {
+          displayArr.push(userScore);
+        }
+      }
+    }
   }
 }

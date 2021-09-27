@@ -10,6 +10,7 @@ export class SmallBoardComponent implements OnInit {
   smallScoreLocal: any = [];
 
   smallScoreArr: any = [];
+  displayArr: any = [];
   constructor() {}
 
   ngOnInit(): void {
@@ -24,13 +25,11 @@ export class SmallBoardComponent implements OnInit {
     }
     if (this.userScore.BoardSize === 2) {
       this.containsObjects(this.userScore, this.smallScoreArr);
-      console.log(this.smallScoreArr);
 
       localStorage.setItem(
         'smallBoardScore',
         JSON.stringify(this.smallScoreArr)
       );
-      console.log(this.smallScoreLocal.length);
 
       this.checkIfExist();
 
@@ -57,11 +56,10 @@ export class SmallBoardComponent implements OnInit {
   checkIfExist() {
     for (let i = 0; i < this.smallScoreArr.length; ++i) {
       if (this.smallScoreArr[i].Date === this.userScore.Date) {
-        return console.log('Already in the list!');
+        return;
       }
     }
     for (let i = 0; i < this.smallScoreArr.length; ++i) {
-      console.log(this.smallScoreArr.length);
       if (this.smallScoreArr[i].Date !== this.userScore.Date) {
         return this.smallScoreArr.push(this.userScore);
       }
@@ -75,5 +73,25 @@ export class SmallBoardComponent implements OnInit {
     this.smallScoreArr.sort(function (a: any, b: any) {
       return a.Score - b.Score;
     });
+
+    this.setDisplayTable();
+  }
+
+  setDisplayTable() {
+    const { displayArr } = this;
+    const { userScore } = this;
+    const { smallScoreArr } = this;
+    if (smallScoreArr.length > 5) {
+      for (let i = 0; i < 5; ++i) {
+        displayArr.push(this.smallScoreArr[i]);
+      }
+      if (
+        !displayArr.filter((row: any) => row.Date === userScore.Date).length
+      ) {
+        if (this.userScore.BoardSize === 2) {
+          displayArr.push(userScore);
+        }
+      }
+    }
   }
 }
