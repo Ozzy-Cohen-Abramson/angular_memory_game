@@ -17,12 +17,14 @@ export class DogInfoComponent implements OnInit {
   ngOnInit(): void {
     this.pathName = window.location.pathname;
     this.urlArr = this.pathName.split('/');
-    this.breedFromUrl = this.urlArr[2];
-    this.http
-      .get(`https://dog.ceo/api/breed/${this.breedFromUrl}/images/random/5`)
-      .subscribe((res: any) => (this.dogImgArr = res.message));
-    this.http
-      .get(`https://dog.ceo/api/breed/${this.breedFromUrl}/list`)
-      .subscribe((res: any) => (this.dogSubBreedArr = res.message));
+    this.breedFromUrl = this.urlArr[3];
+    if (this.breedFromUrl) {
+      this.http
+        .get(`https://dog.ceo/api/breed/${this.breedFromUrl}/images/random/5`)
+        .subscribe((res: any) => (this.dogImgArr = res.message));
+      this.http
+        .get(`https://dog.ceo/api/breed/${this.breedFromUrl}/list`)
+        .subscribe((res: any) => (this.dogSubBreedArr = res.message));
+    }
   }
 }
