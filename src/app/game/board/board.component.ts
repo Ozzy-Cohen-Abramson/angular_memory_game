@@ -138,13 +138,13 @@ export class BoardComponent implements OnInit {
         cardOne.state = cardTwo.state = 'green-match';
         setTimeout(() => {
           cardOne.state = cardTwo.state = 'flipped';
-        }, 5000);
+        }, 2000);
       }
       if (nextState === 'not-matched') {
         setTimeout(() => {
           cardOne.state = cardTwo.state = 'default';
           this.flippedCards = [];
-        }, 5000);
+        }, 2000);
       }
       if (nextState === 'flipped') {
         this.matchedCount++;

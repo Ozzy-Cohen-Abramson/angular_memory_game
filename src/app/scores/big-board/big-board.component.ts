@@ -79,7 +79,6 @@ export class BigBoardComponent implements OnInit {
         displayArr.push(bigScoreArr[i]);
       }
       if (!displayArr.filter((row: any) => row === userScore.Date).length) {
-        console.log(displayArr);
         if (this.userScore.BoardSize === 8) {
           displayArr.push(userScore);
         }

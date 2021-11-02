@@ -44,7 +44,7 @@ export class SmallBoardComponent implements OnInit {
       );
     }
 
-    this.sortArr();
+    this.sortArr(this.smallScoreArr);
   }
 
   containsObjects(obj: any, list: any) {
@@ -61,37 +61,35 @@ export class SmallBoardComponent implements OnInit {
     }
     for (let i = 0; i < this.smallScoreArr.length; ++i) {
       if (this.smallScoreArr[i].Date !== this.userScore.Date) {
+        console.log('object');
         return this.smallScoreArr.push(this.userScore);
       }
     }
   }
 
-  sortArr() {
-    this.smallScoreArr = JSON.parse(
-      localStorage.getItem('smallBoardScore') || '[]'
-    );
-    this.smallScoreArr.sort(function (a: any, b: any) {
+  sortArr(scoreList: any) {
+    scoreList.sort(function (a: any, b: any) {
       return a.Score - b.Score;
     });
-
-    this.setDisplayTable();
+    this.setDisplayTable(scoreList);
   }
 
-  setDisplayTable() {
+  setDisplayTable(scoreList: any) {
     const { displayArr } = this;
     const { userScore } = this;
-    const { smallScoreArr } = this;
-    if (smallScoreArr.length > 5) {
+    // console.log(scoreList);
+    if (scoreList.length > 5) {
       for (let i = 0; i < 5; ++i) {
-        displayArr.push(this.smallScoreArr[i]);
+        displayArr.push(scoreList[i]);
       }
-      if (
-        !displayArr.filter((row: any) => row.Date === userScore.Date).length
-      ) {
+      if (!displayArr.filter((row: any) => row === userScore.Date).length) {
         if (this.userScore.BoardSize === 2) {
           displayArr.push(userScore);
         }
       }
+    } else {
+      this.displayArr = scoreList;
     }
+    console.log(displayArr);
   }
 }
