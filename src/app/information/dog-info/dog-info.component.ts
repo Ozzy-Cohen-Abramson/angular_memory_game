@@ -21,7 +21,7 @@ export class DogInfoComponent implements OnInit {
     this.urlArr = this.pathName.split('/');
     this.breedFromUrl = this.urlArr[6];
     console.log(this.breedFromUrl);
-    if (window.location.href) {
+    if (this.breedFromUrl) {
       this.http
         .get(`https://dog.ceo/api/breed/${this.breedFromUrl}/images/random/5`)
         .subscribe((res: any) => (this.dogImgArr = res.message));
