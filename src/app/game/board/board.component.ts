@@ -168,7 +168,8 @@ export class BoardComponent implements OnInit {
             })
           );
           setTimeout(() => {
-            window.location.href = 'http://localhost:4200/scores';
+            window.location.href =
+              'https://ozzy-cohen-abramson.github.io/angular_memory_game/scores';
           }, 1000);
         }
       }
