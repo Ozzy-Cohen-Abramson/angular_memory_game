@@ -126,9 +126,9 @@ export class InformationComponent implements OnInit {
     );
   }
 
-  // searchBreed() {
-  //   console.log(this.breedName);
-  // }
+  searchBreed() {
+    console.log(this.breedName);
+  }
   // fetch random dog images
   // https://dog.ceo/api/breeds/image/random/4
 }

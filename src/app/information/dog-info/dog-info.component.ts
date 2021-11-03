@@ -19,8 +19,8 @@ export class DogInfoComponent implements OnInit {
   ngOnInit(): void {
     this.pathName = window.location.href;
     this.urlArr = this.pathName.split('/');
-    this.breedFromUrl = this.urlArr[5];
-    console.log(this.urlArr);
+    this.breedFromUrl = this.urlArr[6];
+    console.log(this.breedFromUrl);
     if (window.location.href) {
       this.http
         .get(`https://dog.ceo/api/breed/${this.breedFromUrl}/images/random/5`)
