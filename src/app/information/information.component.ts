@@ -127,6 +127,7 @@ export class InformationComponent implements OnInit {
   }
 
   searchBreed() {
+    window.location.href = `https://ozzy-cohen-abramson.github.io/angular_memory_game/#/breed/${this.breedName}`;
     console.log(this.breedName);
   }
   // fetch random dog images
